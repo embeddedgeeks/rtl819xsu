@@ -28,6 +28,8 @@
 #endif
 #define BIT(x)	(1 << (x))
 
+#include <linux/interrupt.h>
+#include <linux/export.h>
 
 #define WLAN_ETHHDR_LEN		14
 #define WLAN_ETHADDR_LEN	6

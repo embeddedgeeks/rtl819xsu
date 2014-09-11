@@ -11,7 +11,7 @@ CONFIG_SDIO_HCI                 =       n
 
 CONFIG_MP_INCLUDED              =       y
 
-CONFIG_PLATFORM_I386_PC         =       y
+CONFIG_PLATFORM_I386_PC         =       n
 CONFIG_PLATFORM_ANDROID_X86     =       n
 CONFIG_PLATFORM_ARM_S3C         =       n
 CONFIG_PLATFORM_ARM_PXA         =       n
@@ -21,7 +21,7 @@ CONFIG_PLATFORM_MIPS_PLM        =       n
 CONFIG_PLATFORM_RTD2880B        =       n
 CONFIG_PLATFORM_MSTAR389        =       n
 CONFIG_PLATFORM_ARM_TCC8900     =       n
-
+CONFIG_PLATFORM_ARM_BEAGLE      =       y
 CONFIG_MLME_EXT                 =       n
 CONFIG_DRVEXT_MODULE    = n
 
@@ -160,6 +160,14 @@ ARCH ?= arm
 CROSS_COMPILE ?= /media/DATA-1/telechips/SDK_2302_20110425/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/arm-eabi-
 KSRC ?=/media/DATA-1/telechips/SDK_2302_20110425/kernel
 MODULE_NAME := wlan
+endif
+
+ifeq ($(CONFIG_PLATFORM_ARM_BEAGLE), y)
+EXTRA_CFLAGS += -DCONFIG_LITTLE_ENDIAN
+ARCH ?= arm
+CROSS_COMPILE ?= arm-angstrom-linux-gnueabi-
+KSRC ?=
+MODULE_NAME := 819xsu
 endif
 
 ifneq ($(KERNELRELEASE),)
